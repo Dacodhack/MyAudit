@@ -40,5 +40,3 @@ Permettre aux équipes d'audit de travailler ensemble de manière efficace en of
 Simplifier le processus de génération de rapports d'audit, réduisant ainsi le temps et les efforts nécessaires pour produire des documents de haute qualité.
  - Sécurisation des Données :
 Assurer la sécurité des informations sensibles en contrôlant les accès et en utilisant des pratiques de gestion sécurisée des mots de passe et des fichiers.
-## Conclusion
-Le site web d'audit de sécurité que nous avons développé est une solution complète pour la gestion et la documentation des audits de sécurité. Avec des fonctionnalités robustes d'authentification, de gestion des missions, de génération de rapports et de gestion des fichiers, il permet aux auditeurs de travailler de manière plus organisée, efficace et sécurisée.
