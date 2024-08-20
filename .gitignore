@@ -1,0 +1,6 @@
+/upload/*
+/instance/*
+/init_db/*
+import_Adrela.py
+init_db.py
+debug.py

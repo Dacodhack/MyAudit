@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Paramètrage de la plateforme</h1>
+    <h2>Création:</h2>
+    <div class="param">
+        <a class="param" href="/create_theme">Nouveau thème</a>
+        <a class="param" href="/create_domaine">Nouveau domaine</a>
+        <a class="param" href="/create_chapitre">Nouveau chapitre</a>
+        <a class="param" href="/create_question">Nouvelle question</a>
+        <a class="param" href="/create_recommendation">Nouvelle recommendation</a>
+    </div>
+    <h2>Liste:</h2>
+    <div  class="param">
+        <a class="param" href="/list_themes">Liste des thèmes</a>
+        <a class="param" href="/list_domaines">Liste des domaines</a>
+        <a class="param" href="/list_chapitres">Liste des chapitres</a>
+        <a class="param" href="/list_questions">Liste des questions</a>
+        <a class="param" href="/list_recommendations">Liste des recommendations</a>
+    </div>
+{% endblock %}

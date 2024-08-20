@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+{% if user.is_admin() %}
+        
+
+    <h2>Vos missions:</h3>
+    <div class="container tab">
+        <table class="tab">
+            <thead class="tab">
+                <tr class="tab">
+                    <th class="tab">Mission</th>
+                    <th class="tab">Fin de mission</th>
+                    <th class="tab">Fin d'audit</th>
+                    <th class="tab">Dernière action</th>
+                    <th class="tab">Convention d'audit</th>
+                    <th class="tab">Contrat d'audit</th>
+                    <th class="tab">Auditer</th>
+                    <th class="tab">Gestion de la mission</th>
+                    <th class="tab">Gestion des droits</th>
+                </tr>
+            </thead>
+            <tbody class="tab">
+                {% for mission in missions %}
+                <tr class="tab">
+                    <td class="tab">{{ mission.mission }} ({{ mission.client_company }} - {{ mission.client_produit }} - {{ mission.client_representative }})</td>
+                    <td class="tab">{{ mission.date_fin_mission }}</td>
+                    <td class="tab">{{ mission.date_fin_audit }}</td>
+                    <td class="tab">{{ mission.date_lastUpdate }}</td>
+                    <td class="tab"><a href="{{ url_for('compil.gen_convention', id_mission=mission.id_mission) }}" class="btn btn-primary">Convention</a></td>
+                    <td class="tab"><a href="{{ url_for('compil.gen_contrat', id_mission=mission.id_mission) }}" class="btn btn-primary">Contrat</a></td>
+                    <td class="tab"><a href="{{ url_for('mission.travail', id_mission=mission.id_mission) }}" class="btn btn-primary">Audit</a></td>
+                    <td class="tab"><a href="{{ url_for('mission.edit_mission', id_mission=mission.id_mission) }}" class="btn btn-primary">Edition</a></td>
+                    <td class="tab"><a href="{{ url_for('mission.edit_right', id_mission=mission.id_mission) }}" class="btn btn-primary">Droits</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+{% endif %}
+
+
+    <div class="">
+        <h1>Description du Site Web d'Audit de Sécurité</h1>
+
+        <h2>Description Générale du Site Web</h2>
+        <p>
+            Le site web que nous avons construit est une plateforme d'audit de sécurité, permettant aux utilisateurs d'exécuter, de gérer et de générer des rapports d'audit pour des missions spécifiques. Ce site est conçu pour les auditeurs de sécurité et les chefs de projet, leur fournissant des outils pour suivre et documenter les audits de sécurité.
+        </p>
+
+        <h2>Fonctionnalités Clés</h2>
+
+        <h3>1. Authentification et Autorisation</h3>
+        <ul>
+            <li>
+                <strong>Inscription et Connexion :</strong>
+                <ul>
+                    <li>Les utilisateurs peuvent s'inscrire et se connecter de manière sécurisée.</li>
+                    <li>Les mots de passe sont stockés de manière sécurisée avec un hashage approprié.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Gestion des Droits d'Accès :</strong>
+                <ul>
+                    <li>Les utilisateurs sont assignés à des missions avec des rôles spécifiques tels que "auditeur" ou "chef de projet".</li>
+                    <li>Les utilisateurs ne peuvent accéder qu'aux missions pour lesquelles ils ont été explicitement autorisés.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>2. Gestion des Missions d'Audit</h3>
+        <ul>
+            <li>
+                <strong>Création et Édition de Missions :</strong>
+                <ul>
+                    <li>Les utilisateurs peuvent créer de nouvelles missions d'audit, spécifiant des détails tels que le nom de la mission, le nom du client, le produit audité, les représentants, etc.</li>
+                    <li>Les missions peuvent être modifiées pour mettre à jour les informations au fur et à mesure de l'avancement de l'audit.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Affichage des Missions :</strong>
+                <ul>
+                    <li>Les utilisateurs peuvent voir une liste des missions auxquelles ils ont accès, avec des détails sur chaque mission.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>3. Questionnaire d'Audit</h3>
+        <ul>
+            <li>
+                <strong>Formulaire de Réponses :</strong>
+                <ul>
+                    <li>Les auditeurs peuvent répondre à des questions spécifiques pour chaque mission à l'aide d'un formulaire.</li>
+                    <li>Le formulaire inclut un champ de texte pour des réponses détaillées, un champ de téléchargement de fichiers pour les pièces jointes, et une liste déroulante pour évaluer les mesures de sécurité (avec des options de 0 à 5, où chaque valeur représente un niveau de mise en œuvre des mesures).</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Validation et Soumission :</strong>
+                <ul>
+                    <li>Les réponses aux questions sont validées avant soumission pour s'assurer de la complétude et de la pertinence des informations fournies.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>4. Génération de Rapports</h3>
+        <ul>
+            <li>
+                <strong>Rapports en LaTeX :</strong>
+                <ul>
+                    <li>Les utilisateurs peuvent générer des rapports d'audit en format LaTeX. Le modèle LaTeX est personnalisé pour inclure les détails spécifiques de chaque mission d'audit.</li>
+                    <li>Les rapports peuvent inclure des images encodées en base64 et sont compilés en différents formats, tels que PDF et DOCX, à l'aide de Pandoc.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Téléchargement de Rapports :</strong>
+                <ul>
+                    <li>Une fois générés, les rapports peuvent être téléchargés directement depuis le site web.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>5. Gestion des Fichiers</h3>
+        <ul>
+            <li>
+                <strong>Téléchargement de Pièces Jointes :</strong>
+                <ul>
+                    <li>Les auditeurs peuvent télécharger des fichiers pertinents pour chaque mission, tels que des preuves de vulnérabilités, des captures d'écran, etc.</li>
+                    <li>Les fichiers sont sauvegardés de manière organisée dans un répertoire dédié.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Objectifs du Site Web</h2>
+        <ul>
+            <li>
+                <strong>Centralisation de l'Information :</strong>
+                <p>Fournir une plateforme unique où les auditeurs peuvent gérer toutes les informations relatives à leurs missions d'audit de sécurité.</p>
+            </li>
+            <li>
+                <strong>Facilitation de la Collaboration :</strong>
+                <p>Permettre aux équipes d'audit de travailler ensemble de manière efficace en offrant des outils pour le partage d'informations et la coordination des tâches.</p>
+            </li>
+            <li>
+                <strong>Automatisation des Rapports :</strong>
+                <p>Simplifier le processus de génération de rapports d'audit, réduisant ainsi le temps et les efforts nécessaires pour produire des documents de haute qualité.</p>
+            </li>
+            <li>
+                <strong>Sécurisation des Données :</strong>
+                <p>Assurer la sécurité des informations sensibles en contrôlant les accès et en utilisant des pratiques de gestion sécurisée des mots de passe et des fichiers.</p>
+            </li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+            Le site web d'audit de sécurité que nous avons développé est une solution complète pour la gestion et la documentation des audits de sécurité. Avec des fonctionnalités robustes d'authentification, de gestion des missions, de génération de rapports et de gestion des fichiers, il permet aux auditeurs de travailler de manière plus organisée, efficace et sécurisée.
+        </p>
+    </div>
+
+{% endblock %}

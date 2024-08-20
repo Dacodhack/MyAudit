@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container active">
+    <h1>{{ title }}</h1>
+    <div id="themes-container"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('/api/themes')
+            .then(response => response.json())
+            .then(themes => {
+                const themesContainer = document.getElementById('themes-container');
+                themes.forEach(theme => {
+                    const themeElement = document.createElement('div');
+                    themeElement.innerHTML = `<h2>${theme.theme}</h2><ul class="list_domaines" id="domaines-${theme.id_theme}"></ul>`;
+                    themesContainer.appendChild(themeElement);
+                    fetch(`/api/domaine/${theme.id_theme}`)
+                        .then(response => response.json())
+                        .then(domaines => {
+                            const domainesList = document.getElementById(`domaines-${theme.id_theme}`);
+                            domaines.forEach(domaine => {
+                                const domaineElement = document.createElement('li');
+                                domaineElement.innerHTML = `<h4>${domaine.domaine}</h4><ul class="list_chapitres" id="chapitres-${domaine.id_domaine}"></ul>`;
+                                domainesList.appendChild(domaineElement);
+
+                                fetch(`/api/chapitre/${domaine.id_domaine}`)
+                                    .then(response => response.json())
+                                    .then(chapitres => {
+                                        const chapitresList = document.getElementById(`chapitres-${domaine.id_domaine}`);
+                                        chapitres.forEach(chapitre => {
+                                            const chapitreElement = document.createElement('li');
+                                            chapitreElement.innerHTML = `<strong>${chapitre.chapitre}</strong><ul class="list_questions" id="questions-${chapitre.id_chapitre}"></ul>`;
+                                            chapitresList.appendChild(chapitreElement);
+
+                                            fetch(`/api/question/${chapitre.id_chapitre}`)
+                                                .then(response => response.json())
+                                                .then(questions => {
+                                                    const questionsList = document.getElementById(`questions-${chapitre.id_chapitre}`);
+                                                    questions.forEach(question => {
+                                                        const questionItem = document.createElement('li');
+                                                        questionItem.textContent = question.question;
+                                                        questionsList.appendChild(questionItem);
+                                                    });
+                                                })
+                                                .catch(error => console.error('Error fetching questions:', error));
+                                        });
+                                    })
+                                    .catch(error => console.error('Error fetching chapitres:', error));
+                            });
+                        })
+                        .catch(error => console.error('Error fetching domaines:', error));
+                });
+            })
+            .catch(error => console.error('Error fetching themes:', error));
+    });
+</script>
+{% endblock %}

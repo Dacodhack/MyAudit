@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Gestion des utilisateurs</h2>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Rôle actuel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ 'Administrateur' if user.droits_generaux == 'admin' else 'Utilisateur' }}</td>
+                <td>
+                    <form method="POST" style="display: inline;">
+                        <input type="hidden" name="user_id" value="{{ user.id_user }}">
+                        
+                        {% if user.droits_generaux != 'admin' %}
+                            <button type="submit" name="action" value="promote" class="btn btn-success btn-sm">Promouvoir</button>
+                        {% else %}
+                            <button type="submit" name="action" value="demote" class="btn btn-warning btn-sm">Rétrograder</button>
+                        {% endif %}
+                        
+                        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm" {% if user.droits_generaux == 'admin' %}disabled{% endif %}>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

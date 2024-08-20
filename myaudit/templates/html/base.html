@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- v0.1.0 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Votre Titre{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        {% if current_user.is_authenticated %}<a href="/dashboard"class="logo">Dashboard</a>        {% endif %}
+        {% if current_user.is_authenticated %}<a href="/profil">Profil</a>        {% endif %}
+        {% if current_user.is_authenticated %}<a href="/missions">Missions</a>        {% endif %}
+        {% if current_user.is_authenticated %}<a href="/paramétrages">Configuration de la plateforme</a>        {% endif %}
+        {% if current_user.is_authenticated %}<a href="/logout">Déconnexion</a>{% else %}<a href="/login">Connexion</a>{% endif %}
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Contenu spécifique à chaque page va ici -->
+        {% endblock %}
+    </main>
+</body>
+</html>

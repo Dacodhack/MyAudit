@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="login-form" class="form-login active login-box">
+        <span id="show-register" class="switch-button">Enregistrement</span>
+        
+        <h2>Connexion</h2>
+        <form method="POST" action="">
+            {{ login_form.hidden_tag() }}
+            <div class="user-box">
+                {{ login_form.username.label }}<br>
+                {{ login_form.username(size=32) }}<br>
+            </div>
+            <div class="user-box">
+                {{ login_form.password.label }}<br>
+                {{ login_form.password(size=32) }}<br>
+            </div>
+            <p><input type="submit" name="login_submit" value="Login" class="btn"></p>
+        </form>
+    </div>
+    <div id="register-form" class="form-login login-box">
+        <span id="show-login" class="switch-button">Connexion</span>
+        
+        <h2>Enregistrement</h2>
+        
+        <form method="POST" action="">
+            {{ register_form.hidden_tag() }}
+            <div class="user-box">
+                {{ register_form.username.label }}<br>
+                {{ register_form.username(size=32) }}<br>
+            </div>
+            <div class="user-box">
+                {{ register_form.password.label }}<br>
+                {{ register_form.password(size=32) }}<br>
+            </div>
+            <div class="user-box">
+                {{ register_form.confirm_password.label }}<br>
+                {{ register_form.confirm_password(size=32) }}<br>
+            </div>
+            <p><input type="submit" name="register_submit" value="Register" class="btn"></p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('show-login').addEventListener('click', function() {
+            document.getElementById('login-form').classList.add('active');
+            document.getElementById('register-form').classList.remove('active');
+        });
+
+        document.getElementById('show-register').addEventListener('click', function() {
+            document.getElementById('register-form').classList.add('active');
+            document.getElementById('login-form').classList.remove('active');
+        });
+    </script>
+</body>
+</html>

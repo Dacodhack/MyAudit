@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Mon Profil</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" class="form-control" value="{{ user.username }}" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Nouveau mot de passe</label>
+        <input type="password" id="password" name="password" class="form-control">
+        <small class="form-text text-muted">Laissez vide si vous ne souhaitez pas changer le mot de passe.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+</form>
+
+{% if user.is_admin() %}
+    <hr>
+    <a href="{{ url_for('profils.manage_users') }}" class="btn btn-secondary">Gérer les utilisateurs</a> <a href="{{ url_for('profils.manage_users') }}" class="btn btn-secondary">Gérer la plateforme</a> <a href="{{ url_for('profils.logs') }}" class="btn btn-secondary">Afficher les logs</a>
+{% endif %}
+{% endblock %}

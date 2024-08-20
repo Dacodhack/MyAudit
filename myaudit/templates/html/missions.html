@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <h1>Missions</h2>
+
+        <a href="/create_mission" class="new">Nouvelle Mission</a>
+
+        <h2>Vos missions:</h3>
+        <div class="container tab">
+            <table class="tab">
+                <thead class="tab">
+                    <tr class="tab">
+                        <th class="tab">Mission</th>
+                        <th class="tab">Entreprise</th>
+                        <th class="tab">Contact</th>
+                        <th class="tab">Dernière update</th>
+                        <th class="tab">Convention d'audit</th>
+                        <th class="tab">Contrat d'audit</th>
+                        <th class="tab">Auditer</th>
+                        <th class="tab">Gestion de la mission</th>
+                        <th class="tab">Gestion des droits</th>
+                    </tr>
+                </thead>
+                <tbody class="tab">
+                    {% for mission in missions %}
+                    <tr class="tab">
+                        <td class="tab">{{ mission.mission }}</td>
+                        <td class="tab">{{ mission.client_company }}  ({{ mission.client_produit }})</td>
+                        <td class="tab">{{ mission.client_representative }} ({{ mission.client_title }})</td>
+                        <td class="tab">{{ mission.date_lastUpdate }}</td>
+                        <td class="tab">
+                            <a href="{{ url_for('compil.gen_convention', id_mission=mission.id_mission) }}" class="btn btn-primary">Convention</a>
+                        </td>
+                        <td class="tab">
+                            <a href="{{ url_for('compil.gen_contrat', id_mission=mission.id_mission) }}" class="btn btn-primary">Contrat</a>
+                        </td>
+                        <td class="tab">
+                            <a href="{{ url_for('mission.travail', id_mission=mission.id_mission) }}" class="btn btn-primary">Audit</a>
+                        </td>
+                        <td class="tab">
+                            <a href="{{ url_for('mission.edit_mission', id_mission=mission.id_mission) }}" class="btn btn-primary">Edition</a>
+                        </td>
+                        <td class="tab">
+                            <a href="{{ url_for('mission.edit_right', id_mission=mission.id_mission) }}" class="btn btn-primary">Droits</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock %}
+        

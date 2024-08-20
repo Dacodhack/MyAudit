@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+</br>
+<div class="form-container active">
+    <h2>{{ title }}</h2>
+    
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>        
+                    <th>Numéro</th>
+                    <th>Question</th>
+                    <th>Accès à la question</th>            
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions_list %}
+                <tr>
+                    <td style="text-align: center;">{{question['id_question']}}</td>
+                    <td>{{question['question']}}</td>
+                    <td><a href="/questionnaire/{{question['id_mission']}}/{{question['id_question']}}">lien</a></td>
+                </tr>
+                {% endfor %}
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Logs</h2>
+<div class="container tab">
+    <table class="tab">
+        <thead class="tab">
+            <tr class="tab">
+                <th class="tab">user</th>
+                <th class="tab">timestamp</th>
+                <th class="tab">url</th>
+                <th class="tab">sended</th>
+            </tr>
+        </thead>
+        <tbody class="tab">
+            {% for log in logs %}
+            <tr class="tab">
+                <td class="tab">{{ log.user }}</td>
+                <td class="tab">{{ log.timestamp }}</td>
+                <td class="tab">{{ log.url }}</td>
+                <td class="tab">{{ log.sended }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+        

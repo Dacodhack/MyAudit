@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container active">
+    <h2>{{ title }}</h2>
+    <div id="themes-container"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/api/themes')
+            .then(response => response.json())
+            .then(themes => {
+                const themesContainer = document.getElementById('themes-container');
+                themes.forEach(theme => {
+                    const themeElement = document.createElement('div');
+                    themeElement.innerHTML = `<h3>${theme.theme}</h3><ul class="list_domaines" id="domaines-${theme.id_theme}"></ul>`;
+                    themesContainer.appendChild(themeElement);
+
+                    fetch(`/api/domaine/${theme.id_theme}`)
+                        .then(response => response.json())
+                        .then(domaines => {
+                            const domainesList = document.getElementById(`domaines-${theme.id_theme}`);
+                            domaines.forEach(domaine => {
+                                const domaineElement = document.createElement('li');
+                                domaineElement.innerHTML = `<strong>${domaine.domaine}</strong><ul class="list_chapitres" id="chapitres-${domaine.id_domaine}"></ul>`;
+                                domainesList.appendChild(domaineElement);
+
+                                fetch(`/api/chapitre/${domaine.id_domaine}`)
+                                    .then(response => response.json())
+                                    .then(chapitres => {
+                                        const chapitresList = document.getElementById(`chapitres-${domaine.id_domaine}`);
+                                        chapitres.forEach(chapitre => {
+                                            const chapitreItem = document.createElement('li');
+                                            chapitreItem.textContent = chapitre.chapitre;
+                                            chapitresList.appendChild(chapitreItem);
+                                        });
+                                    })
+                                    .catch(error => console.error('Error fetching chapitres:', error));
+                            });
+                        })
+                        .catch(error => console.error('Error fetching domaines:', error));
+                });
+            })
+            .catch(error => console.error('Error fetching themes:', error));
+    });
+</script>
+{% endblock %}
