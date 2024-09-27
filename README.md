@@ -1,3 +1,15 @@
+# Lancement de l'application
+
+Pour lancer l'application, il faut installer les librairies et initialiser la base de donnée.
+```
+python3 -m venv myenv
+source myenv/bin/activate # Linux
+pip install -r requirements.txt
+python3 init_db.py && python3 import_Adrela.py 
+python3 app.py
+```
+
+
 # Description du Site Web d'Audit de Sécurité
 ## Description Générale du Site Web
 Le site web que nous avons construit est une plateforme d'audit de sécurité, permettant aux utilisateurs d'exécuter, de gérer et de générer des rapports d'audit pour des missions spécifiques. Ce site est conçu pour les auditeurs de sécurité et les chefs de projet, leur fournissant des outils pour suivre et documenter les audits de sécurité.
@@ -38,5 +50,3 @@ Fournir une plateforme unique où les auditeurs peuvent gérer toutes les inform
 Permettre aux équipes d'audit de travailler ensemble de manière efficace en offrant des outils pour le partage d'informations et la coordination des tâches.
  - Automatisation des Rapports :
 Simplifier le processus de génération de rapports d'audit, réduisant ainsi le temps et les efforts nécessaires pour produire des documents de haute qualité.
- - Sécurisation des Données :
-Assurer la sécurité des informations sensibles en contrôlant les accès et en utilisant des pratiques de gestion sécurisée des mots de passe et des fichiers.

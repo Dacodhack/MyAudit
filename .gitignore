@@ -1,6 +1,10 @@
+/__pycache__/*
+/Adrela/
+/init_db/__pycache__/*
+/myaudit/__pycache__/*
+/myaudit/routes/__pycache__/*
 /upload/*
+/myenv/*
 /instance/*
-/init_db/*
-import_Adrela.py
-init_db.py
 debug.py
+app.db
