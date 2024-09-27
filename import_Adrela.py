@@ -3,7 +3,7 @@ import yaml
 import subprocess
 from sqlalchemy.exc import SQLAlchemyError
 from app import app, db
-from PrivateAuditHunter.models import Recommendations
+from myaudit.models import Recommendations
 
 def clone_repository(repo_url, destination):
     """
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     except:
         print(f"Erreur lors du clonage")
     
-    try
+    try:
         directory = os.path.join(destination, "_adrela")  # Chemin du répertoire à charger après le clonage
         with app.app_context():
             load_yaml_files(directory)
