@@ -6,9 +6,6 @@ from app import app, db
 from myaudit.models import Recommendations
 
 def clone_repository(repo_url, destination):
-    """
-    Clone le dépôt Git dans le répertoire de destination.
-    """
     try:
         if os.path.exists(destination):
             print(f"Le répertoire {destination} existe déjà.")
@@ -20,9 +17,6 @@ def clone_repository(repo_url, destination):
         raise
 
 def load_yaml_files(directory):
-    """
-    Charge et insère les données YAML des fichiers .md du répertoire spécifié.
-    """
     for filename in os.listdir(directory):
         if filename.endswith(".md"): 
             file_path = os.path.join(directory, filename)
@@ -75,7 +69,7 @@ if __name__ == "__main__":
         print(f"Erreur lors du clonage")
     
     try:
-        directory = os.path.join(destination, "_adrela")  # Chemin du répertoire à charger après le clonage
+        directory = os.path.join(destination, "_adrela")
         with app.app_context():
             load_yaml_files(directory)
     except:
