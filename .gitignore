@@ -8,3 +8,4 @@
 /instance/*
 debug.py
 app.db
+update_db.py
