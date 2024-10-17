@@ -157,10 +157,16 @@ def get_mission_data_as_yaml(id_mission):
         'clientproduit': mission.client_produit,
         'clientrepresentative': mission.client_representative,
         'clienttitle': mission.client_title,
-        'AUDITORLOGO': '/home/dacodhack/Documents/Git/MyAudit/myaudit/templates/logo/logo.png',
+        'auditorname': "David Perez",
+        'auditorcompany': "byDacodhack",
+        'auditoraddress': "42 rue de l'aiguillerie, 34000 Montpellier",
+        'auditorsiren': "922793989",
+        'auditorrepresentative': "David Perez",
+        'auditortitle': "Auditeur",
+        'AUDITORLOGO': './../MyAudit/myaudit/templates/logo/logo.png', # Attention au chemin pour avoir le logo
         'VERSIONDOCUMENT': "v-1.0",
-        'AUDITORCOMPANY': "Dacodhack"
-    }
+        'DATEDOCUMENT': datetime.datetime.today()
+        }
     return mission_data
     
 

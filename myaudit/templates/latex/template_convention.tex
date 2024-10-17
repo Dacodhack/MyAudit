@@ -1,101 +1,152 @@
 \documentclass[12pt]{extarticle}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage{geometry}
+\usepackage{amssymb}  
+\usepackage{array} 
+\usepackage{booktabs}  
+\usepackage{enumitem}  
 \usepackage{fancyhdr}
-\usepackage{lipsum}
-\usepackage[table]{xcolor}
-\usepackage{booktabs}
-\usepackage{amsmath}
-\usepackage{enumitem}
-\usepackage{afterpage}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[table]{xcolor}  
 
-% Définir les marges
+
+
 \geometry{
-left=2cm,
-right=2cm,
-top=2cm,
-bottom=2cm
+    left=1cm,
+    right=1cm,
+    top=1cm,
+    bottom=1cm
 }
 
-% Pied de page
+ 
 \fancypagestyle{plain}{
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[C]{\thepage}
+    \fancyhf{}  
+    \renewcommand{\headrulewidth}{0pt}  
+    \fancyfoot[C]{\thepage}  
 }
 
+ 
 \pagestyle{fancy}
-\fancyhf{}
-\fancyfoot[C]{\thepage}
-\fancyhead[R]{Document privé et confidentiel.}
+\fancyhf{}  
+\renewcommand{\headrulewidth}{0pt}  
+\fancyfoot[C]{\thepage}  
+\centering
+\fancyhead[R]{Ce document est une propriété privée et confidentielle. Toute diffusion non autorisée est interdite.}  
+\flushleft
 
 \begin{document}
+    \begin{figure}[htbp]
+        \begin{center}
+            \includegraphics[width=10cm]{./{{AUDITORLOGO}}}
+        \end{center}
+    \end{figure}
 
-% Page de garde
-\begin{titlepage}
-    \centering
-    \vspace*{3cm}
-    \vspace{1cm}
-    {\Huge\bfseries Convention d'audit \par}
-    \vspace{2cm}
-    {\Large \bfseries AUDITORCOMPANY \par}
-    \vfill
-    \vspace{2cm}
-\end{titlepage}
+    \begin{center}
+        
+        \Huge\textbf{Mission: {{mission}} }
 
-\newpage
-\section*{Présentation}
-La convention d’audit a pour rôle de protéger l’audité, le commanditaire et l’auditeur. Elle s’appuie sur les lois françaises et sur le référentiel d’exigence de l’ANSSI. Sans la signature de toutes les parties de cette convention, l’audit ne pourra pas débuter.
+        \LARGE\textbf{ {{auditorcompany}} }
+    
+    \end{center}
+    \vspace{5cm}
+    \begin{center}
+        
+        \normalsize\textbf{Client: {{clientcompany}} }
 
-\newpage
-\section*{Périmètre}
-L’audit va se concentrer sur les cibles suivantes :
-\begin{itemize}
-    \item cible.com
-    \item 192.168.1.1
-\end{itemize}
+        \normalsize\textbf{Produit: {{clientproduit}} }
 
-Ces cibles sont hébergées par {{HEBERGEUR}}. Les serveurs Web sont dans des environnements de préproduction.
+        \normalsize\textbf{Date: {{DATEDOCUMENT}} }
 
-\newpage
-\section*{Modalité}
-L’audit se déroulera du \textbf{ma\_date\_deb} jusqu’au \textbf{ma\_date\_fin}. Les tests d’intrusion se déroulent entre \textit{8h00 et 18h00} heure de Paris, uniquement les week-ends. Les ressources à fournir incluent:
-\begin{itemize}
-    \item Accès VPN ou Internet ;
-    \item Ressources sur les mécanismes de la cible ;
-    \item Comptes utilisateur avec différents droits ;
-    \item Contacts de sécurité et technique.
-\end{itemize}
+        \normalsize\textbf{Version: {{VERSIONDOCUMENT}} }
+    
+    \end{center}
 
-Le rapport sera livré le \textit{31 décembre 2022}, et la réunion de restitution entre le \textit{01 janvier 2021} et \textit{30 décembre 2023}.
 
 \newpage
-\section*{Diffusion}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{Nom Prénom} & \textbf{Rôle} & \textbf{Droits} & \textbf{Contact} \\ \hline
-Perez David & Auditeur & Auditeur & admin@dacodhack.com \\ \hline
-John Smith & RSSI & Accès aux vulnérabilités & contact@mail.com \\ \hline
-\end{tabular}
+\section{Présentation}
+    La convention d’audit a pour rôle de protéger l’audité, le commanditaire et l’auditeur. Elle s’appuie sur les lois françaises et sur le référentiel d’exigence de l’ANSSI. Dans le cadre de cette prestation, vous trouvez toutes les conditions pour la réalisation du test d’intrusion et de l’audit d’architecture.
+
+    Sans la signature de toutes les parties de cette présente convention, l’audit ne pourra pas débuter.
+    
+\section{Périmètre}
+    L’audit va se concentrer sur les cibles suivantes :
+    \begin{itemize}
+        \item cible.com
+        \item 192.168.1.1
+    \end{itemize}
+    Ces cibles sont hebergées par **HEBERGEUR**. Les serveurs Web sont dans des environnements de préproduction dédiés, cela veut dire que l’indisponibilité des serveurs Web n’affectera pas les services fourni par l’entreprise auditée.
+
+\section{Modalité}
+    L’audit se déroulera du ma_date_deb jusqu’au ma_date_fin. Les tests d’intrusion se déroulent entre le *8h00 et 18h00* heure de Paris et uniquement les week-ends.
+    En ce qui concerne les prérequis pour l’accomplissement du service, certaines ressources devront être fournies :
+    \begin{itemize}
+        \item Accès à la cible depuis  une connexion VPN ou depuis Internet ;
+        \item Des ressources permettant de comprendre les mécanismes de la cible ;
+        \item Différents comptes avec différents droits (administrateur, modérateur, utilisateur, etc) ;
+
+        \begin{itemize}
+            \item Le téléphone et le courriel du responsable en cas de problème de sécurité ;
+            \item Le téléphone et le courriel du responsable en cas de problème de technique.
+
+        \end{itemize}
+
+    \end{itemize}
+    Le rapport d’audit sera livré le *31 décembre 2022*, sous format PDF dans une archive chiffré. Le mot de passe de l’archive sera transmis par SMS sur le téléphone de *Monsieur/Madame Martin*, responsable de SSI.
+
+    Une réunion de restitution sera réalisée entre le *01 janvier 2021* et  *30 décembre 2023*.
+
+\section{Diffusion}
+    \begin{table}[h]
+        \centering
+        \caption{Tableau des membres}
+        \begin{tabular}{|l|l|l|l|}
+            \hline
+            \textbf{Nom Prénom} & \textbf{Rôle} & \textbf{Droits} & \textbf{Contact} \\
+            \hline
+            Perez David         & Auditeur      & Auditeur        & admin@dacodhack.com \\
+            \hline
+            John Smith          & RSSI          & Accès aux vulnérabilités & contact@mail.com \\
+            \hline
+        \end{tabular}
+        \label{tab:membres}
+    \end{table}
+
+
+\section{Actions et données collectées}
+    L’auditeur s’appuyera sur la méthodologie OWASP WTSG pour chercher les vulnérabilités. Néanmoins, le commanditaire a souhaité exclure les tests de suppression d’information de la base de données, de latéralisation de l’attaque, etc. dans le cadre de cet audit. Il est important de souligner que malgré tout le soin apporté pendant les tests, il existe un risque potentiel lié à la prestation, notamment en matière de disponibilité et d’intégrité;
+
+    ByDacodhack ne fait pas intervenir d’auditeur n’ayant pas de relation contractuelle avec lui, n'ayant pas signé sa charte d’éthique ou ayant fait l’objet d’une inscription au bulletin n° 3 du casier judiciaire en lien avec les systèmes d’information ;
+
+    Toutes les données collectées pendant l’audit seront supprimées après la restitution du rapport d’audit/réunion de restitution, comme demandé par le commanditaire.
 
 \newpage
-\section*{Actions et données collectées}
-L’auditeur s’appuiera sur la méthodologie OWASP WTSG3. Le commanditaire exclut certains tests (suppression de données, latéralisation, etc.). Les données collectées seront supprimées après restitution.
 
-\newpage
-\section*{SIGNATURE DE LA NOM\_DOCUMENT}
-Toute modification ou annulation du périmètre doit être validée par les deux parties.
+\section{SIGNATURE DE LA CONVENTION D'AUDIT}
 
-\vfill
-\textbf{Pour le Client :}\par
-Moi, \textit{clientrepresentative}, signe en tant que \textit{CLIENT\_TITLE}.\par
-\vspace{3cm}
-Signature :\par
-\textbf{Pour l'Auditeur :}\par
-Moi, David Perez, signe en tant que \textit{CEO}.\par
-\vspace{3cm}
-Signature :
+    Toute modification ou annulation du périmètre devra faire l'objet d'un avenant écrit et signé par les deux parties.
+    
+    Fait en deux exemplaires à \textcolor{red}{\textbf{\underline{lieu}}}, le \textcolor{red}{\textbf{\underline{date}}}, en langue \textcolor{red}{\textbf{\underline{langue}}}, chacun des deux exemplaires étant considéré comme original.
+
+    \subsection{Pour le Client :} 
+    Moi, \textit{ {{clientrepresentative}} }, signe le contrat suivant en qualité de \textit{ {{clienttitle}} }.
+    \vspace{3cm}
+
+    Signature :
+    \subsection{Pour l'Auditeur :} 
+    Moi, \textit{ {{auditorrepresentative}} }, signe le contrat suivant en qualité de \textit{ {{auditortitle}} }.
+    \vspace{3cm}
+
+    Signature :
+    \noindent\rule{\textwidth}{0.4pt}  
+    \vspace{1cm}  
+    \noindent\rule{\textwidth}{0.4pt}  
+    \begin{center}
+        \Huge\textbf{Fin de document}
+    \end{center}
+    \vspace{1cm}  
+    \noindent\rule{\textwidth}{0.4pt}  
+    \vspace{1cm}  
+    \noindent\rule{\textwidth}{0.4pt}  
 
 \end{document}
