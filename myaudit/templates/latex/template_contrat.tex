@@ -1,84 +1,93 @@
 \documentclass[12pt]{extarticle}
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{geometry}
+\usepackage{amssymb}  
+\usepackage{array} 
+\usepackage{booktabs}  
+\usepackage{enumitem}  
 \usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
 \usepackage{xcolor}
-\usepackage{booktabs}
-\usepackage[table]{xcolor}
-\usepackage{amssymb}
-\usepackage{enumitem}
+\usepackage[table]{xcolor}  
+
+
+
 \geometry{
-    left=2cm,
-    right=2cm,
-    top=2cm,
-    bottom=2cm
+    left=1cm,
+    right=1cm,
+    top=1cm,
+    bottom=1cm
 }
+
+ 
 \fancypagestyle{plain}{
     \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
     \fancyfoot[C]{\thepage}
 }
+
+ 
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \fancyfoot[C]{\thepage}
+\centering
 \fancyhead[R]{Ce document est une propriété privée et confidentielle. Toute diffusion non autorisée est interdite.}
+\flushleft
+
 \begin{document}
     \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=10cm]{$AUDITORLOGO$}
+        \begin{center}
+            \includegraphics[width=10cm]{./{{AUDITORLOGO}}}
+        \end{center}
     \end{figure}
+
     \begin{center}
-        \Huge\textbf{$NOMDOCUMENT$}
-    \end{center}
-    \begin{center}
-        \LARGE\textbf{$AUDITORCOMPANY$}
+        
+        \Huge\textbf{Mission: {{mission}} }
+
+        \LARGE\textbf{ {{auditorcompany}} }
+    
     \end{center}
     \vspace{5cm}
-    \begin{flushleft}
-        \normalsize\textbf{Client: $CLIENTCOMPANY$}
-    \end{flushleft}
-    \begin{flushleft}
-        \normalsize\textbf{Produit: $CLIENTPRODUIT$}
-    \end{flushleft}
-    \begin{flushleft}
-        \normalsize\textbf{Date: $DATEDOCUMENT$}
-    \end{flushleft}
-    \begin{flushleft}
-        \normalsize\textbf{Version: $VERSIONDOCUMENT$}
-    \end{flushleft}
-    \newpage
-\justify
+    \begin{center}
+        
+        \normalsize\textbf{Client: {{clientcompany}} }
+
+        \normalsize\textbf{Produit: {{clientproduit}} }
+
+        \normalsize\textbf{Date: {{DATEDOCUMENT}} }
+
+        \normalsize\textbf{Version: {{VERSIONDOCUMENT}} }
+    
+    \end{center}
+
+
 \section{Parties}
-\subsection{$CLIENTCOMPANY${\getvalue{name}}}
-\AUDITORCOMPANY{\getvalue{name}}
-\AUDITORLOGO{\getvalue{name}}
-\VERSIONDOCUMENT{\getvalue{name}}
-\clientaddress{\getvalue{name}}
-\clientcompany{\getvalue{name}}
-\clientname{\getvalue{name}}
-\clientproduit{\getvalue{name}}
-\clientrepresentative{\getvalue{name}}
-\clientsiren{\getvalue{name}}
-\clienttitle{\getvalue{name}}
-\mission{\getvalue{name}}
-L'entreprise \textit{\CLIENTCOMPANY{\getvalue{name}}} (SIREN: \textit{$CLIENTSIREN$}), dont le siège social est situé à \textit{$CLIENTADDRESS$}, représentée par \textit{$CLIENTREPRESENTATIVE$}, en qualité de \textit{$CLIENTTITLE$}.
-\subsection{$AUDITORCOMPANY$}
-\textit{$AUDITORCOMPANY$}, (SIREN: \textit{$AUDITORSIREN$}), dont le siège social est situé à \textit{$AUDITORADDRESS$}, représentée par \textit{$AUDITORREPRESENTATIVE$}, en qualité de \textit{$AUDITORTITLE$}.
+\subsection{ {{clientcompany}}}
+L'entreprise \textit{ {{clientcompany}} } (SIREN: \textit{ {{clientsiren}} }), dont le siège social est situé au \textit{ {{clientaddress}}}, représentée par \textit{ {{clientrepresentative}} }, en qualité de \textit{ {{ clienttitle}}}.
+\subsection{ {{auditorcompany}}}
+\textit{ {{auditorcompany}}}, (SIREN: \textit{ {{auditorsiren}}}), dont le siège social est situé au \textit{ {{auditoraddress}}}, représentée par \textit{ {{auditorrepresentative}}}, en qualité de \textit{ {{auditortitle}}}.
+
 \section{Objet}
 Le présent contrat a pour objet de définir les modalités de réalisation des prestations de sécurité informatique commandées par le Client auprès de l'Auditeur.
-\section{Délais de Réalisation}
+
+\section{Délais de réalisation}
 Les parties conviennent que les prestations seront réalisées dans un délai de \textcolor{red}{\textbf{\underline{nombre de jours/semaines/mois}}}. Ce délai pourra être ajusté en fonction de la complexité des prestations et des éventuelles contraintes rencontrées en cours de projet.
-\section{Périmètre Technique de l’Intrusion}
+
+\section{Périmètre technique de l’intrusion}
 Le périmètre technique de l'intrusion sera défini conjointement par les deux parties avant le début des prestations. \textcolor{red}{\textbf{\underline{Ce périmètre inclura les systèmes, réseaux et applications concernés par les prestations.}}}
+
 \section{Outils et Techniques}
 Les prestations seront réalisées en utilisant les outils et techniques définis conjointement par les deux parties. Ces outils et techniques seront spécifiés dans un document annexe intitulé "Description des Outils et Techniques".
-\section{Phase de Validation}
+
+\section{Phase de validation}
 Une phase de validation sera prévue à la fin des prestations afin de vérifier la conformité des résultats obtenus avec les attentes du Client. Cette phase de validation fera l'objet d'un rapport détaillé remis au Client.
+
 \section{Ressources Mises à Disposition}
 Le Client s'engage à mettre à disposition de l'Auditeur toutes les ressources nécessaires à la réalisation des prestations, y compris l'accès aux systèmes, réseaux et applications concernés.
-\section{Descriptif des Actions}
+
+\section{Descriptif des actions}
 Les actions à réaliser dans le cadre des prestations incluront, \textcolor{red}{\textbf{\underline{sans s'y limiter}}} :
 \begin{itemize}
     \item Pentest : Test d'intrusion sur les systèmes et réseaux du Client pour identifier les failles de sécurité.
@@ -88,6 +97,7 @@ Les actions à réaliser dans le cadre des prestations incluront, \textcolor{red
     \item Audit Organisationnel : Étude des processus et des pratiques organisationnelles du Client en matière de sécurité informatique pour identifier les lacunes et recommander des améliorations.
 \end{itemize}
 \newpage
+
 \section{Tarification}
 Voici les tarifs des différents types de mission :
 \subsection{Audits}
@@ -117,22 +127,25 @@ Voici les tarifs des différents types de mission :
     \end{tabular}
 \end{center}
 \newpage
+
 \section{Assurance}
-L'Auditeur a souscrit une assurance responsabilité civile professionnelle auprès de \textit{$AUDITORASSURANCE$} couvrant les risques liés aux prestations réalisées.
-Le numéro du contrat est : \textit{$AUDITORASSURANCENO$}
+L'Auditeur a souscrit une assurance responsabilité civile professionnelle auprès de \textit{ {{AUDITORASSURANCE}}}couvrant les risques liés aux prestations réalisées.
+Le numéro du contrat est : \textit{ {{AUDITORASSURANCENO}}}
+
 \section{Confidentialité}
 La confidentialité est cruciale dans la gestion d'un audit de sécurité, conforme à la norme ISO 19011, pour protéger les données sensibles des clients, les informations sur les vulnérabilités et maintenir la confiance des parties prenantes.
 Dans le cadre de cet audit, les données confidentielles seront échangées via une archive zip chiffrée, sécurisée par un mot de passe envoyé par SMS au client.
 \newpage
-\section{SIGNATURE DU $NOMDOCUMENT$}
+
+\section{SIGNATURE DU CONTRAT}
 Toute modification ou annulation du présent contrat devra faire l'objet d'un avenant écrit et signé par les deux parties. En cas de litige, les parties s'engagent à chercher une solution amiable avant d'engager toute action judiciaire.
 Fait en deux exemplaires à \textcolor{red}{\textbf{\underline{lieu}}}, le \textcolor{red}{\textbf{\underline{date}}}, en langue \textcolor{red}{\textbf{\underline{langue}}}, chacun des deux exemplaires étant considéré comme original.
 \subsection{Pour le Client :}
-Moi, \textit{$CLIENTREPRESENTATIVE$}, signe le contrat suivant en qualité de \textit{$CLIENTTITLE$}.
+Moi, \textit{ {{clientrepresentative}} }, signe le contrat suivant en qualité de \textit{ {{clienttitle}}}.
 \vspace{3cm}
 Signature :
 \subsection{Pour l'Auditeur :}
-Moi, \textit{$AUDITORREPRESENTATIVE$}, signe le contrat suivant en qualité de \textit{$AUDITORTITLE$}.
+Moi, \textit{ {{auditorrepresentative}}}, signe le contrat suivant en qualité de \textit{ {{auditortitle}}}.
 \vspace{3cm}
 Signature :
 \noindent\rule{\textwidth}{0.4pt}
@@ -145,5 +158,4 @@ Signature :
 \noindent\rule{\textwidth}{0.4pt}
 \vspace{1cm}
 \noindent\rule{\textwidth}{0.4pt}
-$body$
 \end{document}
