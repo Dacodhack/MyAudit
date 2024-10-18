@@ -28,7 +28,51 @@
 \fancyhead[R]{Ce document est une propriété privée et confidentielle. Toute diffusion non autorisée est interdite.}
 \flushleft
 \begin{document}
-\title{"Rapport d'audit"}
-\date{\today}
+    \title{Rapport d'audit}
+    \begin{figure}[htbp]
+        \begin{center}
+            \includegraphics[width=10cm]{./{{AUDITORLOGO}}}
+        \end{center}
+    \end{figure}
+    \begin{center}
+        \Huge\textbf{Mission: {{mission}} }
+
+        \LARGE\textbf{Auditeur: {{auditorcompany}} }
+    \end{center}
+    \vspace{5cm}
+    \begin{center}
+        \normalsize\textbf{Client: {{clientcompany}} }
+
+        \normalsize\textbf{Produit: {{clientproduit}} }
+
+        \normalsize\textbf{Date: {{DATEDOCUMENT}} }
+
+        \normalsize\textbf{Version: {{VERSIONDOCUMENT}} }
+    \end{center}
+\newpage
+
 \maketitle
 \tableofcontents
+
+\chapter{Introduction}
+
+\section{Présentation du rapport}
+Ce rapport est structuré en trois chapitres distincts.
+\begin{itemize}
+  \item Introduction, ce premier chapitre offre une présentation complète de la mission. Il établit le contexte de l'audit, présente les parties prenantes (l'auditeur et l'audité), et détaille les objectifs de la mission.
+  \item Rapport, le deuxième chapitre est consacré à l'audit, à savoir ~~les Tests d'Intrusion (TI), l'Architecture, et l'Organisation~~.
+    \begin{itemize}
+      \item Les tests d'intrusion seront réalisés en conformité avec le guide de l'OWASP, en suivant les 11 étapes. Cette approche méthodique vise à assurer une évaluation exhaustive de la solution, englobant tous les aspects pertinents et garantissant ainsi la robustesse de l'ensemble du système.
+      \item Pour l'Architecture et l'Organisation, l'analyse sera menée en conformité avec les normes ISO 27002, permettant ainsi une évaluation exhaustive des aspects structurels et organisationnels.
+    \end{itemize}
+  \item Annexes, la troisième partie du rapport est réservée aux annexes. Elle regroupera les informations complémentaires, les données détaillées, et tout autre élément pertinent qui contribuera à la compréhension approfondie des résultats de l'audit.
+\end{itemize}
+\section{Présentation de l'auditeur}
+En tant que seul employé de mon entreprise individuelle, moi, David Perez, je serai le seul responsable de la gestion de l'audit.
+
+\section{Présentation de l'audité}
+{{audité }} est une entreprise ~~technologique~~ spécialisée dans le ~~développement de solutions de gestion de données cloud~~. Elle se distingue par ~~son engagement envers la transformation numérique et son expertise dans l'analyse avancée des données~~.
+
+L’entreprise {{ commanditaire }} a mandaté la société ByDacodhack pour réaliser un audit de sécurité sur l’application {{ sol_audité }}. 
+La mission de l'auditeur vise à identifier, évaluer les vulnérabilités de la solution {{ sol_audité }} afin d'en renforcer sa sécurité. Une priorisation de {{ aspects }} ont été demandé.
+La convention d'audit signé par ~~par Monsieur ou Madame Martin~~ 

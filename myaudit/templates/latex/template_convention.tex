@@ -28,6 +28,7 @@
 \fancyhead[R]{Ce document est une propriété privée et confidentielle. Toute diffusion non autorisée est interdite.}
 \flushleft
 \begin{document}
+    \title{Convention d'audit}
     \begin{figure}[htbp]
         \begin{center}
             \includegraphics[width=10cm]{./{{AUDITORLOGO}}}
@@ -35,27 +36,32 @@
     \end{figure}
     \begin{center}
         \Huge\textbf{Mission: {{mission}} }
-        \LARGE\textbf{ {{auditorcompany}} }
+
+        \LARGE\textbf{Auditeur: {{auditorcompany}} }
     \end{center}
     \vspace{5cm}
     \begin{center}
         \normalsize\textbf{Client: {{clientcompany}} }
+
         \normalsize\textbf{Produit: {{clientproduit}} }
+
         \normalsize\textbf{Date: {{DATEDOCUMENT}} }
+
         \normalsize\textbf{Version: {{VERSIONDOCUMENT}} }
     \end{center}
 \newpage
-\section{Présentation}
+
+\chapter{Présentation}
     La convention d’audit a pour rôle de protéger l’audité, le commanditaire et l’auditeur. Elle s’appuie sur les lois françaises et sur le référentiel d’exigence de l’ANSSI. Dans le cadre de cette prestation, vous trouvez toutes les conditions pour la réalisation du test d’intrusion et de l’audit d’architecture.
     Sans la signature de toutes les parties de cette présente convention, l’audit ne pourra pas débuter.
-\section{Périmètre}
+\chapter{Périmètre}
     L’audit va se concentrer sur les cibles suivantes :
     \begin{itemize}
         \item cible.com
         \item 192.168.1.1
     \end{itemize}
     Ces cibles sont hebergées par **HEBERGEUR**. Les serveurs Web sont dans des environnements de préproduction dédiés, cela veut dire que l’indisponibilité des serveurs Web n’affectera pas les services fourni par l’entreprise auditée.
-\section{Modalité}
+\chapter{Modalité}
     L’audit se déroulera du ma_date_deb jusqu’au ma_date_fin. Les tests d’intrusion se déroulent entre le *8h00 et 18h00* heure de Paris et uniquement les week-ends.
     En ce qui concerne les prérequis pour l’accomplissement du service, certaines ressources devront être fournies :
     \begin{itemize}
@@ -69,7 +75,7 @@
     \end{itemize}
     Le rapport d’audit sera livré le *31 décembre 2022*, sous format PDF dans une archive chiffré. Le mot de passe de l’archive sera transmis par SMS sur le téléphone de *Monsieur/Madame Martin*, responsable de SSI.
     Une réunion de restitution sera réalisée entre le *01 janvier 2021* et  *30 décembre 2023*.
-\section{Diffusion}
+\chapter{Diffusion}
     \begin{table}[h]
         \centering
         \caption{Tableau des membres}
@@ -84,19 +90,19 @@
         \end{tabular}
         \label{tab:membres}
     \end{table}
-\section{Actions et données collectées}
+\chapter{Actions et données collectées}
     L’auditeur s’appuyera sur la méthodologie OWASP WTSG pour chercher les vulnérabilités. Néanmoins, le commanditaire a souhaité exclure les tests de suppression d’information de la base de données, de latéralisation de l’attaque, etc. dans le cadre de cet audit. Il est important de souligner que malgré tout le soin apporté pendant les tests, il existe un risque potentiel lié à la prestation, notamment en matière de disponibilité et d’intégrité;
     ByDacodhack ne fait pas intervenir d’auditeur n’ayant pas de relation contractuelle avec lui, n'ayant pas signé sa charte d’éthique ou ayant fait l’objet d’une inscription au bulletin n° 3 du casier judiciaire en lien avec les systèmes d’information ;
     Toutes les données collectées pendant l’audit seront supprimées après la restitution du rapport d’audit/réunion de restitution, comme demandé par le commanditaire.
 \newpage
-\section{SIGNATURE DE LA CONVENTION D'AUDIT}
+\chapter{SIGNATURE DE LA CONVENTION D'AUDIT}
     Toute modification ou annulation du périmètre devra faire l'objet d'un avenant écrit et signé par les deux parties.
     Fait en deux exemplaires à \textcolor{red}{\textbf{\underline{lieu}}}, le \textcolor{red}{\textbf{\underline{date}}}, en langue \textcolor{red}{\textbf{\underline{langue}}}, chacun des deux exemplaires étant considéré comme original.
-    \subsection{Pour le Client :}
+    \section{Pour le Client :}
     Moi, \textit{ {{clientrepresentative}} }, signe le contrat suivant en qualité de \textit{ {{clienttitle}} }.
     \vspace{3cm}
     Signature :
-    \subsection{Pour l'Auditeur :}
+    \section{Pour l'Auditeur :}
     Moi, \textit{ {{auditorrepresentative}} }, signe le contrat suivant en qualité de \textit{ {{auditortitle}} }.
     \vspace{3cm}
     Signature :
