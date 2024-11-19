@@ -2,8 +2,8 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from flask_login import login_user, logout_user, current_user, login_required
 
 from myaudit import db, login_manager
-from myaudit.models import Themes, Domaines, Chapitres, Questions, Recommendations
-from myaudit.forms import MissionForm, ThemeForm, DomaineForm, ChapitreForm, QuestionForm, RecommendationForm
+from myaudit.models import Themes, Domaines, Chapitres, Questions, Recommandations
+from myaudit.forms import MissionForm, ThemeForm, DomaineForm, ChapitreForm, QuestionForm, RecommandationForm
 from myaudit.utils import log_action
 
 param = Blueprint('param', __name__)
@@ -116,30 +116,30 @@ def create_question():
 def list_questions():
     return render_template('liste_questions.html', title='Liste des questions')
 
-#region Recommendation
-@param.route('/create_recommendation', methods=['GET', 'POST'])
+#region Recommandation
+@param.route('/create_recommandation', methods=['GET', 'POST'])
 @log_action
 @login_required
-def create_recommendation():
-    form = RecommendationForm()
+def create_recommandation():
+    form = RecommandationForm()
     if form.validate_on_submit():
-        recommendation = Recommendations(
+        recommandation = Recommandations(
             titre_reco=form.titre_reco.data,
-            recommendation=form.recommendation.data,
+            recommandation=form.recommandation.data,
             r_prio=int(form.v_impact.data) * int(form.v_proba.data),
             titre_vuln=form.titre_vuln.data,
             vuln=form.vuln.data,
             v_impact=int(form.v_impact.data),
             v_proba=int(form.v_proba.data),
             )
-        db.session.add(recommendation)
+        db.session.add(recommandation)
         db.session.commit()
         flash('Thème créé avec succès', 'success')
-        return redirect(url_for('param.list_recommendations'))
-    return render_template('create_recommendation.html', title='Nouvelle Recommendation', form=form)
+        return redirect(url_for('param.list_recommandations'))
+    return render_template('create_recommandation.html', title='Nouvelle Recommandation', form=form)
 
-@param.route('/list_recommendations', methods=['GET', 'POST'])
+@param.route('/list_recommandations', methods=['GET', 'POST'])
 @log_action
 @login_required
-def list_recommendations():
-    return render_template('liste_recommendations.html', title='Thèmes')
+def list_recommandations():
+    return render_template('liste_recommandations.html', title='Thèmes')

@@ -27,19 +27,19 @@
     </div>
 
     <h3>Recommandations déjà ajoutées</h3>
-    <ul id="existing-recommendations">
-        {% for rec_audit in recommendations_audit %}
-            <li>{{ rec_audit.titre_reco }} <a href="/api/del/recodaudit/{{question.id_mission}}/{{rec_audit.id_recommendation}}/">❌</a></li>
+    <ul id="existing-recommandations">
+        {% for rec_audit in recommandations_audit %}
+            <li>{{ rec_audit.titre_reco }} <a href="/api/del/recodaudit/{{question.id_mission}}/{{rec_audit.id_recommandation}}/">❌</a></li>
         {% endfor %}
     </ul>
 
     <h3>Ajouter une nouvelle recommandation</h3>
     <div class="form-group">
-        <label for="recommendations-list" class="form-label">Sélectionner une recommandation</label>
-        <select id="recommendations-list" class="form-control">
-            <!-- Les recommendations seront insérés ici par JavaScript -->
+        <label for="recommandations-list" class="form-label">Sélectionner une recommandation</label>
+        <select id="recommandations-list" class="form-control">
+            <!-- Les recommandations seront insérés ici par JavaScript -->
         </select>
-        <button type="button" class="btn btn-secondary" id="add-recommendation">Ajouter la recommendation</button>
+        <button type="button" class="btn btn-secondary" id="add-recommandation">Ajouter la recommandation</button>
     </div>
 
     <div class="form-group">
@@ -49,26 +49,26 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('/api/recommendations')
+        fetch('/api/recommandations')
             .then(response => response.json())
             .then(data => {
-                const recommendationsList = document.getElementById('recommendations-list');
-                data.forEach(recommendation => {
+                const recommandationsList = document.getElementById('recommandations-list');
+                data.forEach(recommandation => {
                     const option = document.createElement('option');
-                    option.value = recommendation.id_recommendation;
-                    option.textContent = recommendation.titre_reco;
-                    recommendationsList.appendChild(option);
+                    option.value = recommandation.id_recommandation;
+                    option.textContent = recommandation.titre_reco;
+                    recommandationsList.appendChild(option);
                 });
             })
-            .catch(error => console.error('Error fetching recommendations:', error));
+            .catch(error => console.error('Error fetching recommandations:', error));
     
-        document.getElementById('add-recommendation').addEventListener('click', function() {
-            const selectedRecommendationId = document.getElementById('recommendations-list').value;
+        document.getElementById('add-recommandation').addEventListener('click', function() {
+            const selectedRecommandationId = document.getElementById('recommandations-list').value;
             const id_mission = {{ question.id_mission }};
             const id_question = {{ question.id_question }};
     
             // Construire l'URL pour la requête POST
-            const url = `/api/ajout/recodaudit/${id_mission}/${id_question}/${selectedRecommendationId}`;
+            const url = `/api/ajout/recodaudit/${id_mission}/${id_question}/${selectedRecommandationId}`;
     
             fetch(url, {
                 method: 'POST',

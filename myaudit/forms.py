@@ -45,12 +45,12 @@ class QuestionForm(FlaskForm):
     objectif = StringField('Objectif', validators=[DataRequired()])
     submit = SubmitField('Enregistrer la question')
 
-class RecommendationForm(FlaskForm):
-    recommendation = StringField('Recommendation:', validators=[DataRequired()])
+class RecommandationForm(FlaskForm):
+    recommandation = StringField('Recommandation:', validators=[DataRequired()])
 
-    id_recommendation = db.Column(db.Integer, primary_key=True)
-    titre_reco = StringField('Titre de la recommendation:', validators=[DataRequired()])
-    recommendation = StringField('Recommendation:', validators=[DataRequired()])
+    id_recommandation = db.Column(db.Integer, primary_key=True)
+    titre_reco = StringField('Titre de la recommandation:', validators=[DataRequired()])
+    recommandation = StringField('Recommandation:', validators=[DataRequired()])
     titre_vuln = StringField('Titre de la vulnérabilité:', validators=[DataRequired()])
     vuln = StringField('Vulnérabilité:', validators=[DataRequired()])
     v_impact = SelectField('Évaluation', choices=[
@@ -67,7 +67,7 @@ class RecommendationForm(FlaskForm):
         ('3', 'Très vraisemblable'),
         ('4', 'Quasi certain')
     ], default='0')
-    submit = SubmitField('Enregistrer la recommendation')
+    submit = SubmitField('Enregistrer la recommandation')
 
 
 class MissionForm(FlaskForm):

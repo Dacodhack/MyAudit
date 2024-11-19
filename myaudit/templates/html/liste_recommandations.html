@@ -4,36 +4,36 @@
 </br>
 <div class="form-container active">
     <h2>{{ title }}</h2>
-    <table id="recommendations-table">
+    <table id="recommandations-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Livrable</th>
-                <th >Recommendations</th>
+                <th >Recommandations</th>
                 <th>Vulnérabilités</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Les recommendations seront insérés ici -->
+            <!-- Les recommandations seront insérés ici -->
         </tbody>
     </table>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('/api/recommendations')
+            fetch('/api/recommandations')
                 .then(response => response.json())
                 .then(data => {
-                    const tableBody = document.querySelector('#recommendations-table tbody');
-                    data.forEach(recommendation => {
+                    const tableBody = document.querySelector('#recommandations-table tbody');
+                    data.forEach(recommandation => {
                         const row = document.createElement('tr');
                         const idCell = document.createElement('td');
                         const livrablesCell = document.createElement('td');
                         const titre_recoCell = document.createElement('td');
                         const titre_vulnCell = document.createElement('td');
-                        idCell.textContent = recommendation.id_recommendation;
-                        livrablesCell.textContent = recommendation.livrables;
-                        titre_recoCell.textContent = recommendation.titre_reco;
-                        titre_vulnCell.textContent = recommendation.titre_vuln;
+                        idCell.textContent = recommandation.id_recommandation;
+                        livrablesCell.textContent = recommandation.livrables;
+                        titre_recoCell.textContent = recommandation.titre_reco;
+                        titre_vulnCell.textContent = recommandation.titre_vuln;
                         row.appendChild(idCell);
                         row.appendChild(livrablesCell);
                         row.appendChild(titre_recoCell);
@@ -41,7 +41,7 @@
                         tableBody.appendChild(row);
                     });
                 })
-                .catch(error => console.error('Error fetching recommendations:', error));
+                .catch(error => console.error('Error fetching recommandations:', error));
         });
     </script>
 

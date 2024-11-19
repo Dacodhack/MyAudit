@@ -12,7 +12,7 @@ from io import BytesIO
 
 from myaudit import db, login_manager
 
-from myaudit.models import Missions, MissionDroits, Domaines, Themes, Chapitres, Questions, QuestionsCache, MissionReponse, RecommendationsAudit
+from myaudit.models import Missions, MissionDroits, Domaines, Themes, Chapitres, Questions, QuestionsCache, MissionReponse, RecommandationsAudit
 from myaudit.forms import MissionForm, QuestionnaireForm
 from myaudit.utils import log_action, check_permissions
 
@@ -224,12 +224,12 @@ def gen_content_rapport(id_mission):
             latex_content.append(r"\includegraphics[width=\textwidth]{" + os.path.join(chemin_images, reponse["piece_jointe"]) + r"}")
 
         questioncache = QuestionsCache.query.filter_by(id_mission=id_mission, id_question=reponse["id_question"]).first()
-        recommendations_audit_list = RecommendationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
-        recommandations = [ra.to_dict() for ra in recommendations_audit_list]
+        recommandations_audit_list = RecommandationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
+        recommandations = [ra.to_dict() for ra in recommandations_audit_list]
 
         if recommandations: # Cette fois pour les reco
 
-            latex_content.append(r"\paragraph{Recommendations:}")
+            latex_content.append(r"\paragraph{Recommandations:}")
 
             for reco in recommandations:
                 latex_content.append("\\begin{tabular}{|c|c|}\n")
@@ -238,13 +238,13 @@ def gen_content_rapport(id_mission):
                 latex_content.append("\\hline\n")
 
                 reco_titre = reco.get("titre_reco", "N/A")
-                reco_recommendation = reco.get("recommendation", "N/A")
+                reco_recommandation = reco.get("recommandation", "N/A")
                 reco_sources = reco.get("sources", "N/A")
                 reco_r_prio = reco.get("r_prio", "N/A")
 
                 latex_content.append(reco_titre + " & " + str(reco_r_prio) + " \\\\\n")
                 latex_content.append("\\hline\n")
-                latex_content.append("\\multicolumn{2}{|l|}{" + reco_recommendation + "}\\\\\n")
+                latex_content.append("\\multicolumn{2}{|l|}{" + reco_recommandation + "}\\\\\n")
                 latex_content.append("\\hline\n")
                 latex_content.append("\\multicolumn{2}{|l|}{Sources: " + (reco_sources or "N/A") + "}\\\\\n")
                 latex_content.append("\\hline\n")

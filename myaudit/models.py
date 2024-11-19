@@ -112,13 +112,13 @@ class QuestionsCache(db.Model):
             'objectif' : self.questions.objectif
         }
 
-#region Recommendations
-class Recommendations(db.Model):
-    __tablename__ = 'Recommendations'
-    id_recommendation = db.Column(db.Integer, primary_key=True)
+#region Recommandations
+class Recommandations(db.Model):
+    __tablename__ = 'Recommandations'
+    id_recommandation = db.Column(db.Integer, primary_key=True)
 
     titre_reco = db.Column(db.String(255), nullable=True)
-    recommendation = db.Column(db.String(2550), nullable=True)
+    recommandation = db.Column(db.String(2550), nullable=True)
 
     r_prio = db.Column(db.Integer, nullable=True)
 
@@ -134,9 +134,9 @@ class Recommendations(db.Model):
 
     def to_dict(self):
         return {
-            'id_recommendation': self.id_recommendation,
+            'id_recommandation': self.id_recommandation,
             'titre_reco': self.titre_reco,
-            'recommendation': self.recommendation,
+            'recommandation': self.recommandation,
             'r_prio': self.r_prio,
             'titre_vuln': self.titre_vuln,
             'vuln': self.vuln,
@@ -147,30 +147,30 @@ class Recommendations(db.Model):
             'sources': self.sources
         }
 
-class RecommendationsAudit(db.Model):
-    __tablename__ = 'RecommendationsAudit'
-    id_recommendationsAudit = db.Column(db.Integer, primary_key=True)
-    id_recommendation = db.Column(db.Integer, db.ForeignKey('Recommendations.id_recommendation'), nullable=False)
+class RecommandationsAudit(db.Model):
+    __tablename__ = 'RecommandationsAudit'
+    id_recommandationsAudit = db.Column(db.Integer, primary_key=True)
+    id_recommandation = db.Column(db.Integer, db.ForeignKey('Recommandations.id_recommandation'), nullable=False)
     id_questionsCache = db.Column(db.Integer, db.ForeignKey('QuestionsCache.id_questionsCache'), nullable=False)
 
-    recommendation = db.relationship('Recommendations', backref='RecommendationsAudit', lazy=True)
-    questions_cache = db.relationship('QuestionsCache', backref='RecommendationsAudit', lazy=True)
+    recommandation = db.relationship('Recommandations', backref='RecommandationsAudit', lazy=True)
+    questions_cache = db.relationship('QuestionsCache', backref='RecommandationsAudit', lazy=True)
 
     def to_dict(self):
         return {
-            'id_recommendationsAudit': self.id_recommendationsAudit,
-            'id_recommendation': self.id_recommendation,
+            'id_recommandationsAudit': self.id_recommandationsAudit,
+            'id_recommandation': self.id_recommandation,
             'id_questionsCache': self.id_questionsCache,
-            'titre_reco': self.recommendation.titre_reco,
-            'recommendation': self.recommendation.recommendation,
-            'r_prio': self.recommendation.r_prio,
-            'titre_vuln': self.recommendation.titre_vuln,
-            'vuln': self.recommendation.vuln,
-            'v_impact': self.recommendation.v_impact,
-            'v_proba': self.recommendation.v_proba,
-            'referents': self.recommendation.referents,
-            'livrables': self.recommendation.livrables,
-            'sources': self.recommendation.sources
+            'titre_reco': self.recommandation.titre_reco,
+            'recommandation': self.recommandation.recommandation,
+            'r_prio': self.recommandation.r_prio,
+            'titre_vuln': self.recommandation.titre_vuln,
+            'vuln': self.recommandation.vuln,
+            'v_impact': self.recommandation.v_impact,
+            'v_proba': self.recommandation.v_proba,
+            'referents': self.recommandation.referents,
+            'livrables': self.recommandation.livrables,
+            'sources': self.recommandation.sources
         }
 
 

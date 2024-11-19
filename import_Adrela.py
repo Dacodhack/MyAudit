@@ -3,7 +3,7 @@ import yaml
 import subprocess
 from sqlalchemy.exc import SQLAlchemyError
 from app import app, db
-from myaudit.models import Recommendations
+from myaudit.models import Recommandations
 
 def clone_repository(repo_url, destination):
     try:
@@ -25,13 +25,13 @@ def load_yaml_files(directory):
                     documents = yaml.safe_load_all(file)
                     for data in documents:
                         if data:
-                            insert_recommendation(data)
+                            insert_recommandation(data)
                 except yaml.YAMLError as e:
                     print(f"Erreur lors de la lecture du fichier {filename}: {e}")
 
-def insert_recommendation(data):
+def insert_recommandation(data):
     try:
-        recommendation = ''.join(map(str, data.get('description', []))) if data.get('description') else None
+        recommandation = ''.join(map(str, data.get('description', []))) if data.get('description') else None
         vulnerability = ''.join(map(str, data.get('vulnerability', []))) if data.get('vulnerability') else None
         impact = ''.join(map(str, data.get('Impact', []))) if data.get('Impact') else None
         probability = ''.join(map(str, data.get('Probability', []))) if data.get('Probability') else None
@@ -39,9 +39,9 @@ def insert_recommendation(data):
         livrables = ''.join(data.get('livrables', [])) if data.get('livrables') else None
         sources = ''.join(data.get('sources', [])) if data.get('sources') else None
 
-        recommendation = Recommendations(
+        recommandation = Recommandations(
             titre_reco=data.get('recommandation', ''),
-            recommendation=recommendation,
+            recommandation=recommandation,
             titre_vuln=data.get('TVuln', ''),
             vuln=vulnerability,
             v_impact=impact,
@@ -50,9 +50,9 @@ def insert_recommendation(data):
             livrables=livrables,
             sources=sources
         )
-        db.session.add(recommendation)
+        db.session.add(recommandation)
         db.session.commit()
-        print(f"Recommandation insérée: {recommendation.recommendation}")
+        print(f"Recommandation insérée: {recommandation.recommandation}")
     except SQLAlchemyError as e:
         db.session.rollback()  # Annuler la transaction en cas d'erreur
         print(f"Erreur lors de l'insertion dans la base de données: {e}")

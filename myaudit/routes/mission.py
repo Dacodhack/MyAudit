@@ -1,7 +1,7 @@
 from myaudit import db, login_manager
 
 
-from myaudit.models import Missions, MissionDroits, Domaines, Themes, Chapitres, Questions, QuestionsCache, MissionReponse, RecommendationsAudit
+from myaudit.models import Missions, MissionDroits, Domaines, Themes, Chapitres, Questions, QuestionsCache, MissionReponse, RecommandationsAudit
 from myaudit.forms import MissionForm, QuestionnaireForm, AddUserToMissionForm
 from myaudit.utils import log_action, check_permissions
 
@@ -185,8 +185,8 @@ def travail(id_mission):
 @check_permissions(lambda id_mission, id_question: id_mission, required_roles=['chef de projet', 'auditeur'])
 def questionnaire(id_mission, id_question):
     questioncache = QuestionsCache.query.filter_by(id_mission=id_mission,id_question=id_question).first()
-    recommendations_audit_list = RecommendationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
-    recommendations_audit_dicts = [ra.to_dict() for ra in recommendations_audit_list]
+    recommandations_audit_list = RecommandationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
+    recommandations_audit_dicts = [ra.to_dict() for ra in recommandations_audit_list]
 
     if request.method == 'POST':
         OLD_id_question = id_question - 1
@@ -227,7 +227,7 @@ def questionnaire(id_mission, id_question):
     reponse = MissionReponse.query.filter_by(id_mission=id_mission, id_question=id_question).first()
     form = QuestionnaireForm(obj=reponse)
     
-    return render_template('questionnaire.html', title='Questionnaire', form=form, question=question, reponse=reponse, recommendations_audit=recommendations_audit_dicts)
+    return render_template('questionnaire.html', title='Questionnaire', form=form, question=question, reponse=reponse, recommandations_audit=recommandations_audit_dicts)
 
 
 def update_question_cache(id_mission):

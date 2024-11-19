@@ -1,5 +1,5 @@
 from myaudit import db, login_manager
-from myaudit.models import Themes, Domaines, Chapitres, Questions, Recommendations, Missions, MissionReponse, MissionDroits, QuestionsCache, RecommendationsAudit, Logs
+from myaudit.models import Themes, Domaines, Chapitres, Questions, Recommandations, Missions, MissionReponse, MissionDroits, QuestionsCache, RecommandationsAudit, Logs
 from myaudit.utils import log_action, check_permissions
 
 from flask import Blueprint, flash, jsonify, render_template
@@ -71,13 +71,13 @@ def get_questions_by_chapitre(id_chapitre):
     questions_list = [question.to_dict() for question in questions]
     return jsonify(questions_list)
 
-@api.route('/api/recommendations', methods=['GET'])
+@api.route('/api/recommandations', methods=['GET'])
 @log_action
 @login_required
-def get_recommendations():
-    recommendations = Recommendations.query.all()
-    recommendations_list = [recommendation.to_dict() for recommendation in recommendations]
-    return jsonify(recommendations_list)
+def get_recommandations():
+    recommandations = Recommandations.query.all()
+    recommandations_list = [recommandation.to_dict() for recommandation in recommandations]
+    return jsonify(recommandations_list)
 
 @api.route('/api/missions', methods=['GET'])
 @log_action
@@ -131,35 +131,35 @@ def get_logs():
 @api.route('/api/recodaudit', methods=['GET'])
 @log_action
 @login_required
-def get_list_recommendations():
-    recommendations_audit_list = RecommendationsAudit.query.all()
-    recommendations_audit_dicts = [ra.to_dict() for ra in recommendations_audit_list]
-    return jsonify(recommendations_audit_dicts)
+def get_list_recommandations():
+    recommandations_audit_list = RecommandationsAudit.query.all()
+    recommandations_audit_dicts = [ra.to_dict() for ra in recommandations_audit_list]
+    return jsonify(recommandations_audit_dicts)
 
 
 @api.route('/api/list/recodaudit/<int:id_mission>/<int:id_question>', methods=['GET'])
 @log_action
 @login_required
 @check_permissions(lambda id_mission, id_question: id_mission, required_roles=['chef de projet', 'auditeur'])
-def get_list_recommendation(id_mission, id_question):
+def get_list_recommandation(id_mission, id_question):
     questioncache = QuestionsCache.query.filter_by(id_mission=id_mission,id_question=id_question).first()
-    recommendations_audit_list = RecommendationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
-    recommendations_audit_dicts = [ra.to_dict() for ra in recommendations_audit_list]
-    return jsonify(recommendations_audit_dicts)
+    recommandations_audit_list = RecommandationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
+    recommandations_audit_dicts = [ra.to_dict() for ra in recommandations_audit_list]
+    return jsonify(recommandations_audit_dicts)
 
-@api.route('/api/ajout/recodaudit/<int:id_mission>/<int:id_question>/<int:id_recommendation>', methods=['GET', 'POST'])
+@api.route('/api/ajout/recodaudit/<int:id_mission>/<int:id_question>/<int:id_recommandation>', methods=['GET', 'POST'])
 @log_action
 @login_required
-@check_permissions(lambda id_mission, id_question, id_recommendation: id_mission , required_roles=['chef de projet', 'auditeur'])
-def ajout_recommendation(id_mission, id_question, id_recommendation):
+@check_permissions(lambda id_mission, id_question, id_recommandation: id_mission , required_roles=['chef de projet', 'auditeur'])
+def ajout_recommandation(id_mission, id_question, id_recommandation):
     try:
 
         questioncache = QuestionsCache.query.filter_by(id_mission=id_mission,id_question=id_question).first()
-        recommendation = RecommendationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
+        recommandation = RecommandationsAudit.query.filter_by(id_questionsCache=questioncache.id_questionsCache).all()
         
 
-        recodaudit = RecommendationsAudit(
-            id_recommendation=id_recommendation,
+        recodaudit = RecommandationsAudit(
+            id_recommandation=id_recommandation,
             id_questionsCache=questioncache.id_questionsCache
         )
 
@@ -170,20 +170,20 @@ def ajout_recommendation(id_mission, id_question, id_recommendation):
     return render_template('erreur.html', erreur="Ok")
 
 
-@api.route('/api/del/recodaudit/<int:id_mission>/<int:id_recommendationsAudit>', methods=['GET', 'POST'])
+@api.route('/api/del/recodaudit/<int:id_mission>/<int:id_recommandationsAudit>', methods=['GET', 'POST'])
 @log_action
 @login_required
-@check_permissions(lambda id_mission, id_recommendationsAudit: id_mission , required_roles=['chef de projet', 'auditeur'])
-def del_recommendation(id_mission, id_recommendationsAudit):
+@check_permissions(lambda id_mission, id_recommandationsAudit: id_mission , required_roles=['chef de projet', 'auditeur'])
+def del_recommandation(id_mission, id_recommandationsAudit):
     try:
-        recommendation_audit = RecommendationsAudit.query.filter_by(id_recommendationsAudit=id_recommendationsAudit).first()
+        recommandation_audit = RecommandationsAudit.query.filter_by(id_recommandationsAudit=id_recommandationsAudit).first()
         
-        if recommendation_audit:
-            db.session.delete(recommendation_audit)
+        if recommandation_audit:
+            db.session.delete(recommandation_audit)
             db.session.commit()
-            return jsonify({"success": True, "message": "RecommendationAudit supprimée avec succès."}), 200
+            return jsonify({"success": True, "message": "RecommandationAudit supprimée avec succès."}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"success": False, "message": "Erreur lors de la suppression: " + str(e)}), 500
-    return jsonify({"success": False, "message": "RecommendationAudit introuvable."}), 404
+    return jsonify({"success": False, "message": "RecommandationAudit introuvable."}), 404
  
